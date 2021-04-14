@@ -5,13 +5,11 @@
 </head>
 
 <body>
-  <div id="player"></div>
+  <div id="player" class='embed-container'></div>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
     var options = {
       id: '536232154',
-      width: 300,
-      height: 300,
       playsinline: true,
     };
 
@@ -41,5 +39,28 @@
     }
   </script>
 </body>
+
+<style>
+  .embed-container {
+  --video--width: 1296;
+  --video--height: 540;
+
+  position: relative;
+  padding-bottom: calc(var(--video--height) / var(--video--width) * 100%); /* 41.66666667% */
+  overflow: hidden;
+  max-width: 100%;
+  background: black;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
 
 </html>
