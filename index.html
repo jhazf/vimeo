@@ -34,10 +34,10 @@
       return sendMessageToRN("PLAYING")
     });
 
-    this.player.on('pause', function () {
-      console.log('PAUSE')
-      return sendMessageToRN("PAUSED")
-    });
+    // this.player.on('pause', function () {
+    //   console.log('PAUSE')
+    //   return sendMessageToRN("PAUSED")
+    // });
 
     this.player.on('stopped', function () {
       console.log('STOP')
