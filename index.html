@@ -21,10 +21,16 @@
       return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
     const vid = getParameterByName('vid');
+    const width = getParameterByName('width');
+    const height = getParameterByName('height');
+    const OS = getParameterByName('os');
+
     var options = {
       id: vid,
       url: 'https://vimeo.com/' + vid,
       playsinline: true,
+      width: width,
+      height: height
     };
 
     this.player = new Vimeo.Player('player', options);
@@ -43,9 +49,9 @@
       console.log('STOP')
       return sendMessageToRN("ENDED")
     });
-    player.on('ended', function() {
-        console.log('ENDED');
-        return sendMessageToRN("ENDED")
+    player.on('ended', function () {
+      console.log('ENDED');
+      return sendMessageToRN("ENDED")
     });
     this.player.on('finish', function () {
       console.log('FINISH')
@@ -53,12 +59,22 @@
     });
 
     function sendMessageToRN(message) {
-      if (window.ReactNativeWebView.postMessage.length !== 1) {
-        setTimeout(sendMessageToRN(message), 200);
+
+      if (OS === "ios") {
+        if (window.ReactNativeWebView.postMessage.length !== 1) {
+          setTimeout(sendMessageToRN(message), 200);
+        } else {
+          window.ReactNativeWebView.postMessage(message);
+        }
       } else {
         window.ReactNativeWebView.postMessage(message);
+        setTimeout(() => window.ReactNativeWebView.postMessage(message), 10);
       }
+
     }
+
+
+
   </script>
 </body>
 
