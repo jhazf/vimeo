@@ -40,23 +40,20 @@
     iframe.id = PLAYER_ID;
     document.body.appendChild(iframe);
     const player = $f(iframe);
-    // Bind player events to `sendEvent` function so that they are passed
-    // through the bridge.
+
+
     player.addEvent('ready', function () {
-      // Ideally we could just iterate over event names and add the sendEvent
-      // handler to each of them, however that doesn't work because sendEvent
-      // ends up just being called with whatever was the last event in the array.
       player.addEvent('play', function (data) {
         return sendMessageToRN("PLAYING")
       });
-      player.addEvent('playProgress', function (data) {
-        return sendMessageToRN("PROGRESS")
-      });
+      // player.addEvent('playProgress', function (data) {
+      //   return sendMessageToRN("PROGRESS")
+      // });
       player.addEvent('pause', function (data) {
         return sendMessageToRN("PAUSED")
       });
       player.addEvent('finish', function (data) {
-        return sendMessageToRN("STOPPED")
+        return sendMessageToRN("ENDED")
       });
     });
 
