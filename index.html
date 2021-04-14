@@ -20,6 +20,8 @@
       if (!results[2]) return '';
       return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
+
+    const heightOffset = 20;
     const vid = getParameterByName('vid');
     const width = getParameterByName('width');
     const OS = getParameterByName('os');
@@ -29,6 +31,7 @@
       url: 'https://vimeo.com/' + vid,
       playsinline: true,
       width: width,
+      height: (height) && height - heightOffset //To center vimeo video
     };
 
     this.player = new Vimeo.Player('player', options);
