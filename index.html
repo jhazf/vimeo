@@ -46,10 +46,9 @@
       player.addEvent('play', function (data) {
         return sendMessageToRN("PLAYING")
       });
-      player.addEvent('playProgress', function (data) {
-        console.log(data)
-        return sendMessageToRN(data)
-      });
+      // player.addEvent('playProgress', function (data) {
+      //   return sendMessageToRN("PROGRESS")
+      // });
       player.addEvent('pause', function (data) {
         return sendMessageToRN("PAUSED")
       });
