@@ -8,16 +8,29 @@
   <div id="player" class='embed-container'></div>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
+
+    function getParameterByName(name, url) {
+      // From http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+      if (!url) url = window.location.href;
+      url = url.toLowerCase(); // This is just to avoid case sensitiveness
+      name = name.replace(/[\[\]]/g, '\\$&').toLowerCase(); // This is just to avoid case sensitiveness for query parameter name
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    const vid = getParameterByName('vid');
     var options = {
-      id: '536232154',
-      url: 'https://vimeo.com/536232154',
+      id: vid,
+      url: 'https://vimeo.com/' + vid,
       playsinline: true,
     };
 
     this.player = new Vimeo.Player('player', options);
 
     this.player.on('play', function () {
-      console.log('PLAY1')
+      console.log('PLAY')
       return sendMessageToRN("PLAYING")
     });
 
@@ -28,6 +41,10 @@
 
     this.player.on('stopped', function () {
       console.log('STOP')
+      return sendMessageToRN("STOPPED")
+    });
+    this.player.on('finish', function () {
+      console.log('FINISH')
       return sendMessageToRN("STOPPED")
     });
 
@@ -43,25 +60,26 @@
 
 <style>
   .embed-container {
-  --video--width: 1296;
-  --video--height: 540;
+    --video--width: 1296;
+    --video--height: 540;
 
-  position: relative;
-  padding-bottom: calc(var(--video--height) / var(--video--width) * 100%); /* 41.66666667% */
-  overflow: hidden;
-  max-width: 100%;
-  background: black;
-}
+    position: relative;
+    padding-bottom: calc(var(--video--height) / var(--video--width) * 100%);
+    /* 41.66666667% */
+    overflow: hidden;
+    max-width: 100%;
+    background: black;
+  }
 
-.embed-container iframe,
-.embed-container object,
-.embed-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+  .embed-container iframe,
+  .embed-container object,
+  .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
 
 </html>
