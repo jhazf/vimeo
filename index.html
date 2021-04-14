@@ -44,15 +44,21 @@
 
     player.addEvent('ready', function () {
       player.addEvent('play', function (data) {
+        console.log('PLAY')
         return sendMessageToRN("PLAYING")
       });
       // player.addEvent('playProgress', function (data) {
       //   return sendMessageToRN("PROGRESS")
       // });
-      player.addEvent('pause', function (data) {
-        return sendMessageToRN("PAUSED")
-      });
+      // player.addEvent('pause', function (data) {
+      //   return sendMessageToRN("PAUSED")
+      // });
       player.addEvent('finish', function (data) {
+        console.log('FINISH')
+        return sendMessageToRN("ENDED")
+      });
+      player.addEvent('ended', function (data) {
+        console.log('END')
         return sendMessageToRN("ENDED")
       });
     });
