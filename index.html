@@ -47,12 +47,13 @@
         return sendMessageToRN("PLAYING")
       });
       player.addEvent('playProgress', function (data) {
+        console.log(data)
         return sendMessageToRN(data)
       });
       player.addEvent('pause', function (data) {
         return sendMessageToRN("PAUSED")
       });
-      player.addEvent('finish', function (data) {
+      player.addEvent('ended', function (data) {
         return sendMessageToRN("ENDED")
       });
     });
