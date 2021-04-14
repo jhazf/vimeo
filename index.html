@@ -31,7 +31,7 @@
     let iframe;
     iframe = document.createElement('iframe');
     iframe.src =
-      'https://player.vimeo.com/video/' + vid + '?&player_id=' + PLAYER_ID;
+      'https://player.vimeo.com/video/' + vid + '?api=1&player_id=' + PLAYER_ID;
     iframe.width = '100%';
     iframe.height = '98%';
     iframe.frameBorder = '0';
@@ -44,18 +44,15 @@
 
     player.addEvent('ready', function () {
       player.addEvent('play', function (data) {
-        console.log('play')
         return sendMessageToRN("PLAYING")
       });
       // player.addEvent('playProgress', function (data) {
       //   return sendMessageToRN("PROGRESS")
       // });
       player.addEvent('pause', function (data) {
-        console.log('pause')
         return sendMessageToRN("PAUSED")
       });
-      player.addEvent('ended', function (data) {
-        console.log('end')
+      player.addEvent('finish', function (data) {
         return sendMessageToRN("ENDED")
       });
     });
