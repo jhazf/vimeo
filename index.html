@@ -43,6 +43,9 @@
       console.log('STOP')
       return sendMessageToRN("STOPPED")
     });
+    player.on('ended', function() {
+        console.log('ENDED');
+    });
     this.player.on('finish', function () {
       console.log('FINISH')
       return sendMessageToRN("STOPPED")
