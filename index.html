@@ -1,41 +1,45 @@
 <html>
-			<head>
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			</head>
-   			<body>
-   				<div id="player"></div>
-   				<script src="https://player.vimeo.com/api/player.js"></script>
-   				<script>
-      				var options = {
-        				id: 30833066,
-        				width: 300,
-        				playsinline: true
-    				};
 
-    				this.player = new Vimeo.Player('player', options);
-				
-    				this.player.on('play', function() {
-              console.log('PLAY')
-        				return sendMessageToRN("PLAYING")
-    				});
-    				
-    				this.player.on('pause', function() {
-              console.log('PAUSE')
-        				return sendMessageToRN("PAUSED")
-    				});
-    				
-    				this.player.on('stopped', function() {
-              console.log('STOP')
-        				return sendMessageToRN("STOPPED")
-    				});
-      	
-   					function sendMessageToRN(message) {
-   		   				if (window.ReactNativeWebView.postMessage.length !== 1) {
-              					setTimeout(sendMessageToRN(message), 200);
-           				} else {
-   		      					window.ReactNativeWebView.postMessage(message);
-   		   				}
-        			}
-				</script>
-    		</body>
-    	</html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div id="player"></div>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    var options = {
+      id: 30833066,
+      width: '100%',
+      height: '100%',
+      playsinline: true
+    };
+
+    this.player = new Vimeo.Player('player', options);
+
+    this.player.on('play', function () {
+      console.log('PLAY')
+      return sendMessageToRN("PLAYING")
+    });
+
+    this.player.on('pause', function () {
+      console.log('PAUSE')
+      return sendMessageToRN("PAUSED")
+    });
+
+    this.player.on('stopped', function () {
+      console.log('STOP')
+      return sendMessageToRN("STOPPED")
+    });
+
+    function sendMessageToRN(message) {
+      if (window.ReactNativeWebView.postMessage.length !== 1) {
+        setTimeout(sendMessageToRN(message), 200);
+      } else {
+        window.ReactNativeWebView.postMessage(message);
+      }
+    }
+  </script>
+</body>
+
+</html>
