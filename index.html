@@ -41,14 +41,15 @@
 
     this.player.on('stopped', function () {
       console.log('STOP')
-      return sendMessageToRN("STOPPED")
+      return sendMessageToRN("ENDED")
     });
     player.on('ended', function() {
         console.log('ENDED');
+        return sendMessageToRN("ENDED")
     });
     this.player.on('finish', function () {
       console.log('FINISH')
-      return sendMessageToRN("STOPPED")
+      return sendMessageToRN("ENDED")
     });
 
     function sendMessageToRN(message) {
