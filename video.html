@@ -50,6 +50,7 @@
 
     this.player.on('timeupdate', function(data) {
       if (data.percent >= 0.99) {
+        console.log('TIMEUPDATED')
         return sendMessageToRN("ENDED")
       }
     });
