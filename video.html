@@ -43,11 +43,11 @@
       return sendMessageToRN("PLAYING")
     });
 
-    this.player.on('playProgress', function(data) {
-      // if (data.percent >= 0.99) {
-        console.log('PROGRESS', data)
-        return sendMessageToRN("progress")
-      // }
+    this.player.on('timeupdate', function(data) {
+      if (data.percent >= 0.99) {
+        console.log('TIMEUPDATED')
+        return sendMessageToRN("TIMEUPDATED")
+      }
     });
 
     this.player.on('stopped', function () {
