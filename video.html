@@ -22,7 +22,7 @@
     }
 
     const OS = getParameterByName('os');
-    const heightOffset = (OS === 'ios') ? 20 : 0;
+    const heightOffset = 20;
     const vid = getParameterByName('vid');
     const width = getParameterByName('width');
     const height = getParameterByName('height');
@@ -43,10 +43,10 @@
       return sendMessageToRN("PLAYING")
     });
 
-    // this.player.on('pause', function () {
-    //   console.log('PAUSE')
-    //   return sendMessageToRN("PAUSED")
-    // });
+    this.player.on('pause', function () {
+      console.log('PAUSE')
+      return sendMessageToRN("PAUSED")
+    });
 
     this.player.on('stopped', function () {
       console.log('STOP')
