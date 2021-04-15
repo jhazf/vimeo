@@ -43,11 +43,6 @@
       return sendMessageToRN("PLAYING")
     });
 
-    this.player.on('pause', function () {
-      console.log('PAUSE')
-      return sendMessageToRN("PAUSED")
-    });
-
     this.player.on('timeupdate', function(data) {
       if (data.percent >= 0.99) {
         console.log('TIMEUPDATED')
@@ -68,6 +63,11 @@
     this.player.on('finish', function () {
       console.log('FINISH')
       return sendMessageToRN("ENDED")
+    });
+
+    this.player.on('pause', function () {
+      console.log('PAUSE')
+      return sendMessageToRN("PAUSED")
     });
 
     function sendMessageToRN(message) {
