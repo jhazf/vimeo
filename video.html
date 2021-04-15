@@ -43,13 +43,21 @@
       return sendMessageToRN("PLAYING")
     });
 
+  
+    /**
+     * Workaround to "END" a video 
+     */
     this.player.on('timeupdate', function(data) {
       if (data.percent >= 0.99) {
-        console.log('TIMEUPDATED')
-        return sendMessageToRN("TIMEUPDATED")
+        console.log('ENDED')
+        return sendMessageToRN("ENDED")
       }
     });
 
+    /**
+     * If pause event is added on the player,
+     * stopped, ended and finish are not being called in webview but works in browser 
+     */
     this.player.on('stopped', function () {
       console.log('STOP')
       return sendMessageToRN("ENDED")
