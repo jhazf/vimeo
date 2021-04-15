@@ -48,20 +48,22 @@
       return sendMessageToRN("PAUSED")
     });
 
-    player.on('timeupdate', function(data) {
-      if (data.percent >= 0.99) {
-        return sendMessageToRN("ENDED")
-      }
-    });
+    // this.player.on('timeupdate', function(data) {
+    //   if (data.percent >= 0.99) {
+    //     return sendMessageToRN("ENDED")
+    //   }
+    // });
 
     this.player.on('stopped', function () {
       console.log('STOP')
       return sendMessageToRN("ENDED")
     });
-    player.on('ended', function () {
+
+    this.player.on('ended', function () {
       console.log('ENDED');
       return sendMessageToRN("ENDED")
     });
+
     this.player.on('finish', function () {
       console.log('FINISH')
       return sendMessageToRN("ENDED")
