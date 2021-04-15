@@ -48,6 +48,12 @@
       return sendMessageToRN("PAUSED")
     });
 
+    player.on('timeupdate', function(data) {
+      if (data.percent >= 0.99) {
+        return sendMessageToRN("ENDED")
+      }
+    });
+
     this.player.on('stopped', function () {
       console.log('STOP')
       return sendMessageToRN("ENDED")
@@ -85,6 +91,7 @@
 
 .embed{
     margin-left: -8px;
+    background: #000;
   }
 
   .embed-container {
