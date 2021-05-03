@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body style="background-color: #000;">
+<body style="background-color: #fff;">
   <div id="player" class="embed"></div>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
@@ -29,12 +29,10 @@
 
 
     var options = {
-      id: vid,
+      id: 'https://vimeo.com/536232154/5f2cf37961',
       // url: 'https://vimeo.com/' + vid,
       url: 'https://vimeo.com/536232154/5f2cf37961',
       playsinline: true,
-      width: width,
-      height: (height) && height - heightOffset //To center vimeo video
     };
 
     this.player = new Vimeo.Player('player', options);
