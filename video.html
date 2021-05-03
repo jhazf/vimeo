@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body style="background-color: #fff;">
+<body style="background-color:black;">
   <div id="player" class="embed"></div>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
@@ -29,9 +29,13 @@
 
     console.log('vid', vid);
 
+    //Check if vid contains a slash "/". If it does, treat it as a video with "private" setting
+    const isPrivate = vid.includes("/");
+    const id = (isPrivate) ? 'https://vimeo.com/' + vid : vid
+
     var options = {
-      id: vid,
-      // url: 'https://vimeo.com/' + vid,
+      id: id,
+      url: 'https://vimeo.com/' + vid,
       playsinline: true,
       width: width,
       height: (height) && height - heightOffset //To center vimeo video
