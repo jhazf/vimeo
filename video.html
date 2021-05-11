@@ -4,8 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body style="background-color:black;">
+<body style="background-color: white;">
+  <div class="embed-container">
   <div id="player" class="embed"></div>
+  </div>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
 
@@ -27,7 +29,6 @@
     const width = getParameterByName('width');
     const height = getParameterByName('height');
 
-    console.log('vid', vid);
 
     //Check if vid contains a slash "/". If it does, treat it as a video with "private" setting
     const isPrivate = vid.includes("/");
