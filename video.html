@@ -31,7 +31,7 @@
   </style>
 </head>
 
-<body style="background-color: black;">
+<body style="background-color: white;">
   <!-- <div class="embed-container"> -->
   <!-- <div id="player" class="embed"></div> -->
   <div id="player"></div>
@@ -68,6 +68,7 @@
     var options = {
       id: id,
       url: 'https://vimeo.com/' + vid,
+      responsive: true,
       playsinline: true,
       width: width,
       height: (height) && height - heightOffset //To center vimeo video
