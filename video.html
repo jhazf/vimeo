@@ -93,11 +93,12 @@
         }
     });
 
-    sendMessageToRN("videosize", videoSize.then(result => console.log("result", result)))
+    
     videoSize.then(result => console.log("result", result))
 
     this.player.on('play', function () {
       console.log('PLAY')
+      sendMessageToRN("videosize", videoSize.then(result => console.log("result", result)))
       return sendMessageToRN("PLAYING")
     });
 
