@@ -107,8 +107,8 @@
     this.player.on('timeupdate', function (data) {
 
       videoSize.then(size => {
-        console.log("SIZE", size);
-        sendMessageToRN("size", size)
+        sendMessageToRN(size?.width)
+        sendMessageToRN(size?.height)
       })
 
       if (data.percent >= 0.99) {
