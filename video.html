@@ -93,10 +93,12 @@
       }
     });
 
-
-    videoSize.then(result => console.log("result", result))
-
     this.player.on('play', function () {
+      videoSize.then(size => {
+        sendMessageToRN(size?.width);
+        sendMessageToRN(size?.height);
+        sendMessageToRN("get size")
+      })
       return sendMessageToRN("PLAYING")
     });
 
@@ -105,11 +107,6 @@
      * Workaround to "END" a video 
      */
     this.player.on('timeupdate', function (data) {
-
-      videoSize.then(size => {
-        sendMessageToRN(size?.width)
-        sendMessageToRN(size?.height)
-      })
 
       if (data.percent >= 0.99) {
         console.log('ENDED')
