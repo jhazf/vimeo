@@ -85,6 +85,9 @@
 
     this.player = new Vimeo.Player('player', options);
 
+    sendMessageToRN("videosize", videoSize.then(result => console.log("result", result)))
+
+
     this.player.on('play', function () {
       console.log('PLAY')
       return sendMessageToRN("PLAYING")
