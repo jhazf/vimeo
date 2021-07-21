@@ -105,17 +105,10 @@
 
     // };
 
-    // this.player.on('play', function () {
-    //   console.log("PLAYING");
-    //   return sendMessageToRN("PLAYING")
-    // });
-
-
-
-    videoSize.then(size => {
-      sendMessageToRN(`${size.width}/${size.height}`);
-      console.log("SIZE", size);
-    })
+    this.player.on('play', function () {
+      console.log("PLAYING");
+      return sendMessageToRN("PLAYING")
+    });
 
     /**
      * Workaround to "END" a video 
