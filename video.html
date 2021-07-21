@@ -85,25 +85,33 @@
 
     this.player = new Vimeo.Player('player', options);
 
-    const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
-      const [width, height] = dimensions;
-      return {
-        width: width,
-        height: height
-      }
-    });
+    window.onload = (event) => {
+      console.log('page is fully loaded');
+
+      const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
+        const [width, height] = dimensions;
+        return {
+          width: width,
+          height: height
+        }
+      });
 
 
-    videoSize.then(result => console.log("result", result))
+      videoSize.then(result => console.log("result", result))
+
+    };
 
     this.player.on('play', function () {
-      videoSize.then(size => {
-        sendMessageToRN(`${size.width}/${size.height}`);
-        console.log("SIZE", size);
-      })
-      return sendMessageToRN("PLAYING1")
+      console.log("PLAYING");
+      return sendMessageToRN("PLAYING")
     });
 
+
+
+    videoSize.then(size => {
+      sendMessageToRN(`${size.width}/${size.height}`);
+      console.log("SIZE", size);
+    })
 
     /**
      * Workaround to "END" a video 
