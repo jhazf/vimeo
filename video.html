@@ -85,25 +85,30 @@
 
     this.player = new Vimeo.Player('player', options);
 
-    document.onload = (event) => {
-      console.log('page is fully loaded3');
+    // document.onload = (event) => {
+    //   console.log('page is fully loaded3');
 
-      const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
-        const [width, height] = dimensions;
-        return {
-          width: width,
-          height: height
-        }
-      });
+    //   const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
+    //     const [width, height] = dimensions;
+    //     return {
+    //       width: width,
+    //       height: height
+    //     }
+    //   });
 
 
-      videoSize.then(result => {
-        // console.log("result", result);
-        sendMessageToRN(`${result.width}|${result.height}`);
-        // sendMessageToRN(result);
-      })
+    //   videoSize.then(result => {
+    //     // console.log("result", result);
+    //     sendMessageToRN(`${result.width}|${result.height}`);
+    //     // sendMessageToRN(result);
+    //   })
 
-    };
+    // };
+
+    this.player.on('loaded', function () {
+      // console.log("PLAYING");
+      return sendMessageToRN("LOADED")
+    });
 
     this.player.on('play', function () {
       console.log("PLAYING");
