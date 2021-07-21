@@ -107,6 +107,25 @@
 
     this.player.on('loaded', function () {
       console.log("LOADED");
+
+      const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
+        const [width, height] = dimensions;
+
+        sendMessageToRN(`${width}|${height}`);
+        // return {
+        //   width: width,
+        //   height: height
+        // }
+      });
+
+
+      // videoSize.then(result => {
+      //   // console.log("result", result);
+      //   sendMessageToRN(`${result.width}|${result.height}`);
+      //   // sendMessageToRN(result);
+      // })
+
+
       return sendMessageToRN("LOADED")
     });
 
