@@ -85,30 +85,30 @@
 
     this.player = new Vimeo.Player('player', options);
 
-    window.onload = (event) => {
-      console.log('page is fully loaded2');
+    // window.onload = (event) => {
+    //   console.log('page is fully loaded2');
 
-      const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
-        const [width, height] = dimensions;
-        return {
-          width: width,
-          height: height
-        }
-      });
+    //   const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
+    //     const [width, height] = dimensions;
+    //     return {
+    //       width: width,
+    //       height: height
+    //     }
+    //   });
 
 
-      videoSize.then(result => {
-        console.log("result", result);
-        // sendMessageToRN(`${result.width}|${result.height}`);
-        // sendMessageToRN(result);
-      })
+    //   videoSize.then(result => {
+    //     console.log("result", result);
+    //     // sendMessageToRN(`${result.width}|${result.height}`);
+    //     // sendMessageToRN(result);
+    //   })
 
-    };
+    // };
 
-    this.player.on('play', function () {
-      console.log("PLAYING");
-      return sendMessageToRN("PLAYING")
-    });
+    // this.player.on('play', function () {
+    //   console.log("PLAYING");
+    //   return sendMessageToRN("PLAYING")
+    // });
 
 
 
@@ -121,9 +121,6 @@
      * Workaround to "END" a video 
      */
     this.player.on('timeupdate', function (data) {
-
-
-
       if (data.percent >= 0.99) {
         console.log('ENDED')
         return sendMessageToRN("ENDED")
