@@ -85,7 +85,7 @@
 
     this.player = new Vimeo.Player('player', options);
 
-    window.onload = (event) => {
+    document.onload = (event) => {
       console.log('page is fully loaded2');
 
       const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
