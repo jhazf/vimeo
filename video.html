@@ -98,6 +98,7 @@
 
     this.player.on('play', function () {
       videoSize.then(size => {
+        sendMessageToRN(`${size.width}/${size.height}`);
         console.log("SIZE", size);
       })
       return sendMessageToRN("PLAYING")
