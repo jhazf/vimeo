@@ -108,6 +108,7 @@
     this.player.on('loaded', function () {
       console.log("LOADED1");
 
+      sendMessageToRN("LOADED");
       const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
         const [width, height] = dimensions;
 
