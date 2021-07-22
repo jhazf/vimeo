@@ -86,51 +86,12 @@
     this.player = new Vimeo.Player('player', options);
 
     window.onload = (event) => {
-      sendMessageToRN("LOADED5");
       const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
         const [width, height] = dimensions;
-        sendMessageToRN(`${width}|${height}`);
+        console.log(`{width: ${width}, height:${height}}`)
+        sendMessageToRN(`{width: ${width}, height:${height}}`);
       });
     }
-
-    // document.onload = (event) => {
-    //   console.log('page is fully loaded3');
-
-    //   const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
-    //     const [width, height] = dimensions;
-    //     return {
-    //       width: width,
-    //       height: height
-    //     }
-    //   });
-
-
-    //   videoSize.then(result => {
-    //     // console.log("result", result);
-    //     sendMessageToRN(`${result.width}|${result.height}`);
-    //     // sendMessageToRN(result);
-    //   })
-
-    // };
-
-    //Event doesn't work for webview
-    this.player.on('loaded', function () {
-      const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
-        const [width, height] = dimensions;
-
-        return sendMessageToRN(`${width}|${height}`);
-      });
-
-
-      // videoSize.then(result => {
-      //   // console.log("result", result);
-      //   sendMessageToRN(`${result.width}|${result.height}`);
-      //   // sendMessageToRN(result);
-      // })
-
-
-      return sendMessageToRN("LOADED")
-    });
 
     this.player.on('play', function () {
       console.log("PLAYING");
