@@ -86,7 +86,7 @@
     this.player = new Vimeo.Player('player', options);
 
     window.onload = (event) => {
-      sendMessageToRN("LOADED3");
+      sendMessageToRN("LOADED5");
       const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
         const [width, height] = dimensions;
         sendMessageToRN(`${width}|${height}`);
@@ -115,9 +115,6 @@
 
     //Event doesn't work for webview
     this.player.on('loaded', function () {
-      console.log("LOADED4");
-
-      
       const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
         const [width, height] = dimensions;
 
