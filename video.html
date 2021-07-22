@@ -87,6 +87,10 @@
 
     window.onload = (event) => {
       sendMessageToRN("LOADED3");
+      const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
+        const [width, height] = dimensions;
+        sendMessageToRN(`${width}|${height}`);
+      });
     }
 
     // document.onload = (event) => {
@@ -109,6 +113,7 @@
 
     // };
 
+    //Event doesn't work for webview
     this.player.on('loaded', function () {
       console.log("LOADED4");
 
@@ -117,10 +122,6 @@
         const [width, height] = dimensions;
 
         return sendMessageToRN(`${width}|${height}`);
-        // return {
-        //   width: width,
-        //   height: height
-        // }
       });
 
 
