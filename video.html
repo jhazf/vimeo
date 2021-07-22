@@ -111,7 +111,7 @@
       const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
         const [width, height] = dimensions;
 
-        sendMessageToRN(`${width}|${height}`);
+        return sendMessageToRN(`${width}|${height}`);
         // return {
         //   width: width,
         //   height: height
