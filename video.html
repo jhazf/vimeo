@@ -35,6 +35,7 @@
   <!-- <div class="embed-container"> -->
   <!-- <div id="player" class="embed"></div> -->
   <!-- </div> -->
+  <p>Hello World!</p>
   <div id="player"></div>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
@@ -86,6 +87,7 @@
     this.player = new Vimeo.Player('player', options);
 
     window.onload = (event) => {
+      sendMessageToRN("ONLOAD")
       const videoSize = Promise.all([this.player.getVideoWidth(), this.player.getVideoHeight()]).then(dimensions => {
         const [width, height] = dimensions;
         console.log(`{width: ${width}, height:${height}}`)
