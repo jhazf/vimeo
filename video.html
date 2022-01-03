@@ -60,9 +60,9 @@
       id: id,
       url: 'https://vimeo.com/' + vid,
       playsinline: true,
-      width: width,
-      height: (height) && height - heightOffset, //To center vimeo video
-      // ...responsiveStyle
+      // width: width,
+      // height: (height) && height - heightOffset, //To center vimeo video
+      ...responsiveStyle
     };
 
     this.player = new Vimeo.Player('player', options);
