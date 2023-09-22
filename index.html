@@ -54,6 +54,9 @@
 		<div id="player"></div>
 		<script src="https://player.vimeo.com/api/player.js"></script>
 		<script>
+
+            const OS = 'ios';
+
 			const sendMessageToRN = (message) => {
 				if (OS === 'ios') {
 					if (window.ReactNativeWebView.postMessage.length !== 1) {
